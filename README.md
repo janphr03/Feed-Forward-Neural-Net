@@ -1,4 +1,4 @@
-#Herleitung#
+# Herleitung
 
 Im Rahmen des Projekts wurden die zentralen mathematischen Grundlagen eines Feedforward-Neural-Networks ausführlich hergeleitet und dokumentiert. Dazu gehören:
 
@@ -6,6 +6,7 @@ Im Rahmen des Projekts wurden die zentralen mathematischen Grundlagen eines Feed
 - der Forward Pass mit Gewichtsmatrizen, Bias-Termen und ReLU-Aktivierung
 - die Softmax-Funktion zur Umwandlung der Modell-Outputs in Wahrscheinlichkeitsverteilungen
 - der Cross-Entropy-Loss und seine Rolle bei Klassifikationsaufgaben
+
 **=> Was noch fehlt** ist das Fundament der Backpropagation
 
 Die Herleitungen dienen dazu, die Funktionsweise der einzelnen Komponenten transparent und mathematisch nachvollziehbar darzustellen. 
