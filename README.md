@@ -242,14 +242,3 @@ Backward:
 
 $\delta \rightarrow \nabla W \rightarrow \text{Update}$
 
-
-
-![Image](https://github.com/user-attachments/assets/9a4c7b4b-63ff-448c-9d11-3a69f83d2d7b)
-
-![Image (1)](https://github.com/user-attachments/assets/4c082e2f-d6de-4af7-bcf6-d071fce51579)
-
-![Image (2)](https://github.com/user-attachments/assets/768a4d3a-0a6e-420c-bb6a-d73dc8708e42)
-
-![Image (3)](https://github.com/user-attachments/assets/fc3e7202-943e-4a23-bfcf-9b0953c920a0)
-
-![Image (4)](https://github.com/user-attachments/assets/0279f3d2-2c6a-4e66-b2a6-60a848d65a62)
