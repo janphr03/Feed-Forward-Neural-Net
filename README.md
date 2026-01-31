@@ -27,28 +27,150 @@ You can then:
 - torch
 - torchvision
 
-Install locally with:
-
-```bash
-pip install numpy matplotlib seaborn torch torchvision
-
-
-
-
 
 # Herleitung
+# Feedforward Neural Network – Mathematical Overview (MNIST)
 
-Im Rahmen des Projekts wurden die zentralen mathematischen Grundlagen eines Feedforward-Neural-Networks ausführlich hergeleitet und dokumentiert. Dazu gehören:
+This project implements a simple fully-connected neural network for classifying handwritten digits from the **MNIST dataset**.
 
-- die Initialisierung
-- der Forward Pass mit Gewichtsmatrizen, Bias-Termen und ReLU-Aktivierung
-- die Softmax-Funktion zur Umwandlung der Modell-Outputs in Wahrscheinlichkeitsverteilungen
-- der Cross-Entropy-Loss und seine Rolle bei Klassifikationsaufgaben
+---
 
-**=> Was noch fehlt** ist das Fundament der Backpropagation
+## 1. Input and Output Dimensions
 
-Die Herleitungen dienen dazu, die Funktionsweise der einzelnen Komponenten transparent und mathematisch nachvollziehbar darzustellen. 
-Dadurch basiert das Projekt auf einem klar verständlichen theoretischen Fundament, auch wenn die Backpropagation später über eine Bibliothek implementiert wird.
+Each MNIST image has size:
+
+\[
+28 \times 28 = 784
+\]
+
+Thus the input is flattened into a vector:
+
+\[
+x \in \mathbb{R}^{784}
+\]
+
+The network predicts one of **10 classes** (digits \(0\)–\(9\)):
+
+\[
+y \in \{0,\dots,9\}
+\]
+
+---
+
+## 2. Network Architecture
+
+The network consists of:
+
+- Input Layer: \(784\)
+- Hidden Layer: \(512\)
+- Output Layer: \(10\)
+
+---
+
+### Weight Matrices
+
+\[
+W_1 \in \mathbb{R}^{784 \times 512}
+\]
+
+\[
+W_2 \in \mathbb{R}^{512 \times 10}
+\]
+
+---
+
+### Bias Vectors
+
+\[
+b_1 \in \mathbb{R}^{512}
+\]
+
+\[
+b_2 \in \mathbb{R}^{10}
+\]
+
+Bias terms act as learnable offsets and shift activation thresholds.
+
+---
+
+## 3. Forward Pass
+
+---
+
+### Hidden Layer Computation
+
+Linear transformation:
+
+\[
+z_1 = xW_1 + b_1
+\]
+
+Activation with ReLU:
+
+\[
+a_1 = \mathrm{ReLU}(z_1)
+\]
+
+---
+
+### ReLU Activation Function
+
+\[
+\mathrm{ReLU}(x) = \max(0,x)
+\]
+
+Negative values are removed:
+
+\[
+[-1,2,-3,4] \mapsto [0,2,0,4]
+\]
+
+ReLU introduces non-linearity, allowing the network to learn complex decision boundaries.
+
+---
+
+### Output Layer Computation
+
+\[
+z_2 = a_1W_2 + b_2
+\]
+
+The vector \(z_2\) contains the **logits** (raw scores).
+
+---
+
+## 4. Softmax Output Probabilities
+
+The Softmax function transforms logits into a probability distribution:
+
+\[
+\hat{y}_i =
+\frac{e^{z_i}}{\sum_{j=1}^{10} e^{z_j}}
+\]
+
+Properties:
+
+- \(\hat{y}_i > 0\)
+- \(\sum_{i=1}^{10} \hat{y}_i = 1\)
+
+Thus:
+
+\[
+\hat{y} \in [0,1]^{10}
+\]
+
+---
+
+## 5. Loss Function – Cross Entropy
+
+For a one-hot encoded label \(y\) and prediction \(\hat{y}\):
+
+\[
+L = -\sum_{i=1}^{10} y_i \log(\hat{y}_i)
+\]
+
+Since \(y\) is one-hot, this
+
 
 ![Image](https://github.com/user-attachments/assets/9a4c7b4b-63ff-448c-9d11-3a69f83d2d7b)
 
