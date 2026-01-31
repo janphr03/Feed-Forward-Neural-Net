@@ -117,7 +117,7 @@ The vector $z_2$ contains the **logits** (raw scores).
 
 The Softmax function transforms logits into a probability distribution:
 
-$\hat{y}_i = \frac{e^{z_i}}{\sum_{j=1}^{10} e^{z_j}}$
+$\hat y_i = \frac{e^{z_i}}{\sum_{j=1}^{10} e^{z_j}}$
 
 Properties:
 
