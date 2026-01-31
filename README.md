@@ -1,4 +1,4 @@
-# MNIST Neural Network (NumPy) — Load PyTorch Weights + Visualize
+# MNIST Neural Network (NumPy) - Load PyTorch Weights + Visualize
 
 This project contains a fully NumPy-based feedforward neural network for MNIST classification.
 Instead of training inside NumPy, the network **loads a trained PyTorch model (`mnist_model.pth`)** and copies the weights into NumPy matrices.  
@@ -29,7 +29,7 @@ You can then:
 
 --- --- 
 
-# Feedforward Neural Network – Mathematische Herleitung (MNIST)
+# Feedforward Neural Network - Mathematische Herleitung (MNIST)
 
 ## 1. Input- und Output-Dimensionen
 
