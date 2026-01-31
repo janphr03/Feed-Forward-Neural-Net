@@ -197,7 +197,7 @@ $\delta \rightarrow \nabla W \rightarrow \text{Update}$
 --- --- ---
 # Anhang: Handschriftliche Notizen
 
-Die vollständigen handschriftlichen Herleitungsnotizen sind hier als PDF verfügbar:
+Die vollständigen handschriftlichen Herleitungsnotizen sind hier als PDF zum Download verfügbar:
 
 
 
