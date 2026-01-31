@@ -1,3 +1,41 @@
+# MNIST Neural Network (NumPy) — Load PyTorch Weights + Visualize
+
+This project contains a fully NumPy-based feedforward neural network for MNIST classification.
+Instead of training inside NumPy, the network **loads a trained PyTorch model (`mnist_model.pth`)** and copies the weights into NumPy matrices.  
+You can then:
+- run predictions on MNIST test images
+- visualize the weight matrices as heatmaps
+
+## Features
+- Forward pass: **ReLU** (hidden layers) + **Softmax** (output layer)
+- Loss: **Cross Entropy**
+- Optional Backprop skeleton (included in code)
+- Load weights from **PyTorch state_dict**
+- Visualize predictions + weight matrices
+
+---
+
+## Requirements
+
+### Python version
+- Python **3.9+** recommended
+
+### Dependencies
+- numpy
+- matplotlib
+- seaborn
+- torch
+- torchvision
+
+Install locally with:
+
+```bash
+pip install numpy matplotlib seaborn torch torchvision
+
+
+
+
+
 # Herleitung
 
 Im Rahmen des Projekts wurden die zentralen mathematischen Grundlagen eines Feedforward-Neural-Networks ausführlich hergeleitet und dokumentiert. Dazu gehören:
