@@ -195,9 +195,12 @@ Backward:
 $\delta \rightarrow \nabla W \rightarrow \text{Update}$
 
 --- --- ---
+# Anhang: Handschriftliche Notizen
+
+Die vollständigen handschriftlichen Herleitungsnotizen sind hier als PDF verfügbar:
+
+[Neuronales.Netz_Notizen.pdf](https://github.com/user-attachments/files/24985407/Neuronales.Netz_Notizen.pdf)
 
 
-
-[Neuronales Netz-2-8.pdf](https://github.com/user-attachments/files/24985405/Neuronales.Netz-2-8.pdf)
 
 
