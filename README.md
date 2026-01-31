@@ -28,315 +28,219 @@ You can then:
 - torchvision
 
 
+# Feedforward Neural Network – Mathematische Herleitung (MNIST)
 
-# Feedforward Neural Network – Mathematical Overview (MNIST)
-
-This project implements a simple fully-connected neural network for classifying handwritten digits from the **MNIST dataset**.
+Dieses Projekt implementiert ein einfaches vollständig verbundenes neuronales Netz
+zur Klassifikation handgeschriebener Ziffern aus dem **MNIST-Datensatz**.
 
 ---
 
-## 1. Input and Output Dimensions
+## 1. Input- und Output-Dimensionen
 
-Each MNIST image has size:
+Ein MNIST-Bild hat die Größe:
 
 `28 × 28 = 784`
 
-Thus the input is flattened into a vector:
+Deshalb wird das Bild zu einem Vektor umgeformt:
 
 $x \in \mathbb{R}^{784}$
 
-The network predicts one of **10 classes** (digits 0–9):
+Das Netz soll eine von **10 Klassen** erkennen (Ziffern 0–9):
 
 $y \in \{0,\dots,9\}$
 
 ---
 
-## 2. Network Architecture
+## 2. Netzwerk-Architektur
 
-The network consists of:
+Das Netzwerk besteht aus:
 
-- Input Layer: 784
-- Hidden Layer: 512
-- Output Layer: 10
+- Input Layer: 784  
+- Hidden Layer: 512  
+- Output Layer: 10  
 
 ---
 
-### Weight Matrices
+### Gewichtsmatrizen
+
+Input → Hidden:
 
 $W_1 \in \mathbb{R}^{784 \times 512}$
+
+Hidden → Output:
 
 $W_2 \in \mathbb{R}^{512 \times 10}$
 
 ---
 
-### Bias Vectors
+### Bias-Terme
 
-$b_1 \in \mathbb{R}^{512}$
-
+$b_1 \in \mathbb{R}^{512}$  
 $b_2 \in \mathbb{R}^{10}$
 
-Bias terms act as learnable offsets and shift activation thresholds.
+Bias ist ein Grundwert, der zusätzlich zur gewichteten Summe addiert wird.
 
 ---
 
 ## 3. Forward Pass
 
-### Hidden Layer Computation
+### Hidden Layer
 
-Linear transformation:
+Lineare Kombination:
 
 $z_1 = xW_1 + b_1$
 
-Activation with ReLU:
+Aktivierung:
 
 $a_1 = \mathrm{ReLU}(z_1)$
 
 ---
 
-### ReLU Activation Function
+### ReLU-Funktion
 
 $\mathrm{ReLU}(x) = \max(0,x)$
 
-Negative values are removed:
+Negative Werte werden entfernt:
 
-$[-1,2,-3,4] \mapsto [0,2,0,4]$
+$[0,-1,-2,3,1] \mapsto [0,0,0,3,1]$
 
-ReLU introduces non-linearity, allowing the network to learn complex decision boundaries.
+ReLU dient als Zwischenschritt zwischen den Layern.
 
 ---
 
-### Output Layer Computation
+### Output Layer
 
 $z_2 = a_1W_2 + b_2$
 
-The vector $z_2$ contains the **logits** (raw scores).
+$z_2$ sind die rohen Ausgaben (Logits).
 
 ---
 
-## 4. Softmax Output Probabilities
+## 4. Softmax-Funktion
 
-The Softmax function transforms logits into a probability distribution:
+Softmax wandelt die Output-Werte in Wahrscheinlichkeiten um:
 
 $\hat y_i = \frac{e^{z_i}}{\sum_{j=1}^{10} e^{z_j}}$
 
-Properties:
+Eigenschaften:
 
-- $\hat{y}_i > 0$
-- $\sum_{i=1}^{10} \hat{y}_i = 1$
+- $\hat y_i > 0$
+- $\sum_{i=1}^{10} \hat y_i = 1$
 
-Thus:
-
-$\hat{y} \in [0,1]^{10}$
+Der größte Wert entspricht der vorhergesagten Klasse.
 
 ---
 
-## 5. Loss Function – Cross Entropy
+## 5. Loss Function (Cross Entropy)
 
-For a one-hot encoded label $y$ and prediction $\hat{y}$:
+Die Loss-Funktion misst die Differenz zwischen Vorhersage und Label:
 
-$L = -\sum_{i=1}^{10} y_i \log(\hat{y}_i)$
+$L = -\sum_{i=1}^{10} y_i \log(\hat y_i)$
 
-Since $y$ is one-hot, this reduces to:
+Dabei gilt:
 
-$L = -\log(\hat{y}_{\text{true}})$
-
-Example:
-
-- Prediction: $\hat{y} = [0.1,0.7,0.2]$
-- True label: $y = [0,1,0]$
-
-Loss:
-
-$L = -\log(0.7)$
+- $y$ ist das echte Label (True/False, One-Hot)
+- $\hat y$ ist die geschätzte Wahrscheinlichkeit
 
 ---
 
+# Backpropagation und Gradient Descent
+
+Training bedeutet, Gewichte und Bias so anzupassen,
+dass der Loss minimal wird.
 
 ---
 
-# Backpropagation and Gradient Descent
+## 6. Trainingsloop (Epoche)
 
-Training a neural network means adjusting the parameters
-
-- weights $W$
-- biases $b$
-
-such that the loss function $L$ becomes minimal.
-
-This is done using **Backpropagation** (gradient computation) and **Gradient Descent** (parameter update).
-
----
-
-## 1. Training Loop (One Epoch)
-
-For each training sample $(x,y)$ the network performs:
+Für jedes Trainingsbeispiel $(x,y)$:
 
 1. Forward Pass  
-2. Loss computation  
+2. Loss berechnen  
 3. Backpropagation  
-4. Weight and bias update  
+4. Gewichte updaten  
 
-Repeating this over the full dataset corresponds to **one epoch**.
-
----
-
-## 2. Parameter Update Rule
-
-The weights are updated using gradient descent:
-
-$W \leftarrow W - \eta \frac{\partial L}{\partial W}$
-
-Biases are updated similarly:
-
-$b \leftarrow b - \eta \frac{\partial L}{\partial b}$
-
-Where:
-
-- $\eta$ = learning rate  
-- $\frac{\partial L}{\partial W}$ = gradient of the loss w.r.t. weights  
-
-The gradient tells us how strongly the loss changes when parameters change.
+Eine Epoche bedeutet: einmal durch alle Daten laufen.
 
 ---
 
-## 3. Gradient Definition
+## 7. Gewichtsaktualisierung
 
-A partial derivative is formally defined as:
+Update-Regel:
 
-$\frac{\partial L}{\partial W} = \lim_{\Delta W \to 0} \frac{\Delta L}{\Delta W}$
+$w_{\text{neu}} = w_{\text{alt}} - \eta \frac{\partial E}{\partial w}$
 
-It measures the sensitivity of the loss with respect to a parameter.
+Dabei:
+
+- $\eta$ = Lernrate  
+- $\frac{\partial E}{\partial w}$ = Gradient der Loss-Funktion
 
 ---
 
-## 4. Backpropagation Principle
+## 8. Definition des Gradienten
 
-Backpropagation propagates the error from the output layer backwards through the network.
+$\frac{\partial E}{\partial w}
+= \lim_{\Delta w \to 0} \frac{\Delta E}{\Delta w}$
 
-Each layer computes gradients using the **chain rule**:
+Der Gradient gibt an, wie stark sich der Fehler ändert,
+wenn man ein Gewicht leicht verändert.
+
+---
+
+## 9. Backpropagation Prinzip
+
+Der Fehler wird vom Output zurück durchs Netz gerechnet,
+um Gewichte und Bias anzupassen.
+
+Kettenregel:
 
 $\frac{\partial L}{\partial W}
 = \frac{\partial L}{\partial a}
 \cdot \frac{\partial a}{\partial z}
 \cdot \frac{\partial z}{\partial W}$
 
-This allows efficient computation of all gradients.
+---
+
+## 10. Fehlerterm und Updates
+
+Gewichtsänderung:
+
+$\Delta w_{ij} = -\eta \,\delta_j \, o_i$
+
+Bias-Änderung:
+
+$b_{j,\text{neu}} = b_j - \eta \,\delta_j$
+
+Dabei:
+
+- $\delta$ = Fehleranteil  
+- $o$ = Output des vorherigen Neurons  
 
 ---
 
-## 5. Output Layer Error Term
+## 11. Optimierungs-Intuition
 
-For Softmax + Cross Entropy loss, the error simplifies to:
+Training kann als Minimierung einer Loss-Landschaft verstanden werden.
 
-$\delta_2 = \hat{y} - y$
-
-Where:
-
-- $\hat{y}$ = predicted probability vector  
-- $y$ = true one-hot label  
-
----
-
-### Gradients for Output Layer Parameters
-
-Weight gradient:
-
-$\frac{\partial L}{\partial W_2} = a_1^T \delta_2$
-
-Bias gradient:
-
-$\frac{\partial L}{\partial b_2} = \delta_2$
-
----
-
-## 6. Hidden Layer Error Term
-
-The error is propagated backwards:
-
-$\delta_1 = (\delta_2 W_2^T) \odot \mathrm{ReLU}'(z_1)$
-
-Where $\odot$ denotes elementwise multiplication.
-
----
-
-### ReLU Derivative
-
-$\mathrm{ReLU}'(x) =
-\begin{cases}
-1 & x > 0 \\
-0 & x \leq 0
-\end{cases}$
-
-Inactive neurons ($z \leq 0$) do not contribute to gradient flow.
-
----
-
-### Gradients for Hidden Layer Parameters
-
-Weight gradient:
-
-$\frac{\partial L}{\partial W_1} = x^T \delta_1$
-
-Bias gradient:
-
-$\frac{\partial L}{\partial b_1} = \delta_1$
-
----
-
-## 7. Complete Backpropagation Pipeline
-
-Forward:
-
-$x \rightarrow z_1 \rightarrow a_1 \rightarrow z_2 \rightarrow \hat{y}$
-
-Backward:
-
-$\delta_2 \rightarrow \delta_1 \rightarrow \nabla W_2,\nabla W_1$
-
----
-
-## 8. Optimization View (Loss Landscape)
-
-Training can be interpreted as minimizing a loss function over a high-dimensional parameter space:
+Die Parameter bilden einen Parameterraum:
 
 $\theta = \{W_1,W_2,b_1,b_2\}$
 
-The goal is:
-
-$\theta^\* = \arg\min_\theta L(\theta)$
-
-Gradient descent iteratively moves parameters toward a local minimum:
+Gradient Descent bewegt sich Schritt für Schritt Richtung Minimum:
 
 $\theta \leftarrow \theta - \eta \nabla_\theta L$
 
 ---
 
-This defines the full mathematical foundation of backpropagation and learning in a feedforward neural network.
+## 12. Gesamtablauf
 
+Forward:
 
+$x \rightarrow z_1 \rightarrow a_1 \rightarrow z_2 \rightarrow \hat y \rightarrow L$
 
+Backward:
 
-## 6. Complete Pipeline
-
-$x \rightarrow z_1 \rightarrow a_1 \rightarrow z_2 \rightarrow \hat{y} \rightarrow L$
-
----
-
-### Full Equation System
-
-$z_1 = xW_1 + b_1$
-
-$a_1 = \mathrm{ReLU}(z_1)$
-
-$z_2 = a_1W_2 + b_2$
-
-$\hat{y} = \mathrm{Softmax}(z_2)$
-
-$L = -\sum_{i=1}^{10} y_i\log(\hat{y}_i)$
-
----
-
-This defines the full forward computation for MNIST digit classification.
+$\delta \rightarrow \nabla W \rightarrow \text{Update}$
 
 
 
