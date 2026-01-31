@@ -13,7 +13,6 @@ You can then:
 - Load weights from **PyTorch state_dict**
 - Visualize predictions + weight matrices
 
----
 
 ## Requirements
 
@@ -45,7 +44,6 @@ Das Netz soll eine von **10 Klassen** erkennen (Ziffern 0–9):
 
 $y \in \{0,\dots,9\}$
 
----
 
 ## 2. Netzwerk-Architektur
 
@@ -55,7 +53,6 @@ Das Netzwerk besteht aus:
 - Hidden Layer: 512  
 - Output Layer: 10  
 
----
 
 ### Gewichtsmatrizen
 
@@ -67,7 +64,6 @@ Hidden → Output:
 
 $W_2 \in \mathbb{R}^{512 \times 10}$
 
----
 
 ### Bias-Terme
 
@@ -76,7 +72,6 @@ $b_2 \in \mathbb{R}^{10}$
 
 Bias ist ein Grundwert, der zusätzlich zur gewichteten Summe addiert wird.
 
----
 
 ## 3. Forward Pass
 
@@ -90,7 +85,6 @@ Aktivierung:
 
 $a_1 = \mathrm{ReLU}(z_1)$
 
----
 
 ### ReLU-Funktion
 
@@ -102,7 +96,6 @@ $[0,-1,-2,3,1] \mapsto [0,0,0,3,1]$
 
 ReLU dient als Zwischenschritt zwischen den Layern.
 
----
 
 ### Output Layer
 
@@ -110,7 +103,6 @@ $z_2 = a_1W_2 + b_2$
 
 $z_2$ sind die rohen Ausgaben (Logits).
 
----
 
 ## 4. Softmax-Funktion
 
@@ -125,7 +117,6 @@ Eigenschaften:
 
 Der größte Wert entspricht der vorhergesagten Klasse.
 
----
 
 ## 5. Loss Function (Cross Entropy)
 
@@ -138,14 +129,12 @@ Dabei gilt:
 - $y$ ist das echte Label (True/False, One-Hot)
 - $\hat y$ ist die geschätzte Wahrscheinlichkeit
 
----
 
 # Backpropagation und Gradient Descent
 
 Training bedeutet, Gewichte und Bias so anzupassen,
 dass der Loss minimal wird.
 
----
 
 ## 6. Trainingsloop (Epoche)
 
@@ -158,7 +147,6 @@ Für jedes Trainingsbeispiel $(x,y)$:
 
 Eine Epoche bedeutet: einmal durch alle Daten laufen.
 
----
 
 ## 7. Gewichtsaktualisierung
 
@@ -171,7 +159,6 @@ Dabei:
 - $\eta$ = Lernrate  
 - $\frac{\partial E}{\partial w}$ = Gradient der Loss-Funktion
 
----
 
 ## 8. Definition des Gradienten
 
@@ -181,7 +168,6 @@ $\frac{\partial E}{\partial w}
 Der Gradient gibt an, wie stark sich der Fehler ändert,
 wenn man ein Gewicht leicht verändert.
 
----
 
 ## 9. Backpropagation Prinzip
 
@@ -195,7 +181,6 @@ $\frac{\partial L}{\partial W}
 \cdot \frac{\partial a}{\partial z}
 \cdot \frac{\partial z}{\partial W}$
 
----
 
 ## 10. Fehlerterm und Updates
 
@@ -212,7 +197,6 @@ Dabei:
 - $\delta$ = Fehleranteil  
 - $o$ = Output des vorherigen Neurons  
 
----
 
 ## 11. Optimierungs-Intuition
 
@@ -226,7 +210,6 @@ Gradient Descent bewegt sich Schritt für Schritt Richtung Minimum:
 
 $\theta \leftarrow \theta - \eta \nabla_\theta L$
 
----
 
 ## 12. Gesamtablauf
 
