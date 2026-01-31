@@ -199,8 +199,9 @@ $\delta \rightarrow \nabla W \rightarrow \text{Update}$
 
 Die vollständigen handschriftlichen Herleitungsnotizen sind hier als PDF verfügbar:
 
-[Neuronales.Netz_Notizen.pdf](https://github.com/user-attachments/files/24985407/Neuronales.Netz_Notizen.pdf)
 
+
+[Neuronales.Netz_Notizen.pdf](https://github.com/user-attachments/files/24985489/Neuronales.Netz_Notizen.2.pdf)
 
 
 
