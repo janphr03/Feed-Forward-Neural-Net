@@ -11,7 +11,7 @@ Im Rahmen des Projekts wurden die zentralen mathematischen Grundlagen eines Feed
 
 Die Herleitungen dienen dazu, die Funktionsweise der einzelnen Komponenten transparent und mathematisch nachvollziehbar darzustellen. 
 Dadurch basiert das Projekt auf einem klar verständlichen theoretischen Fundament, auch wenn die Backpropagation später über eine Bibliothek implementiert wird.
-s
+
 ![Image](https://github.com/user-attachments/assets/9a4c7b4b-63ff-448c-9d11-3a69f83d2d7b)
 
 ![Image (1)](https://github.com/user-attachments/assets/4c082e2f-d6de-4af7-bcf6-d071fce51579)
