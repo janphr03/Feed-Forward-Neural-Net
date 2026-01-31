@@ -28,7 +28,7 @@ You can then:
 - torchvision
 
 
-# Herleitung
+
 # Feedforward Neural Network – Mathematical Overview (MNIST)
 
 This project implements a simple fully-connected neural network for classifying handwritten digits from the **MNIST dataset**.
@@ -150,6 +150,171 @@ Loss:
 $L = -\log(0.7)$
 
 ---
+
+
+---
+
+# Backpropagation and Gradient Descent
+
+Training a neural network means adjusting the parameters
+
+- weights $W$
+- biases $b$
+
+such that the loss function $L$ becomes minimal.
+
+This is done using **Backpropagation** (gradient computation) and **Gradient Descent** (parameter update).
+
+---
+
+## 1. Training Loop (One Epoch)
+
+For each training sample $(x,y)$ the network performs:
+
+1. Forward Pass  
+2. Loss computation  
+3. Backpropagation  
+4. Weight and bias update  
+
+Repeating this over the full dataset corresponds to **one epoch**.
+
+---
+
+## 2. Parameter Update Rule
+
+The weights are updated using gradient descent:
+
+$W \leftarrow W - \eta \frac{\partial L}{\partial W}$
+
+Biases are updated similarly:
+
+$b \leftarrow b - \eta \frac{\partial L}{\partial b}$
+
+Where:
+
+- $\eta$ = learning rate  
+- $\frac{\partial L}{\partial W}$ = gradient of the loss w.r.t. weights  
+
+The gradient tells us how strongly the loss changes when parameters change.
+
+---
+
+## 3. Gradient Definition
+
+A partial derivative is formally defined as:
+
+$\frac{\partial L}{\partial W} = \lim_{\Delta W \to 0} \frac{\Delta L}{\Delta W}$
+
+It measures the sensitivity of the loss with respect to a parameter.
+
+---
+
+## 4. Backpropagation Principle
+
+Backpropagation propagates the error from the output layer backwards through the network.
+
+Each layer computes gradients using the **chain rule**:
+
+$\frac{\partial L}{\partial W}
+= \frac{\partial L}{\partial a}
+\cdot \frac{\partial a}{\partial z}
+\cdot \frac{\partial z}{\partial W}$
+
+This allows efficient computation of all gradients.
+
+---
+
+## 5. Output Layer Error Term
+
+For Softmax + Cross Entropy loss, the error simplifies to:
+
+$\delta_2 = \hat{y} - y$
+
+Where:
+
+- $\hat{y}$ = predicted probability vector  
+- $y$ = true one-hot label  
+
+---
+
+### Gradients for Output Layer Parameters
+
+Weight gradient:
+
+$\frac{\partial L}{\partial W_2} = a_1^T \delta_2$
+
+Bias gradient:
+
+$\frac{\partial L}{\partial b_2} = \delta_2$
+
+---
+
+## 6. Hidden Layer Error Term
+
+The error is propagated backwards:
+
+$\delta_1 = (\delta_2 W_2^T) \odot \mathrm{ReLU}'(z_1)$
+
+Where $\odot$ denotes elementwise multiplication.
+
+---
+
+### ReLU Derivative
+
+$\mathrm{ReLU}'(x) =
+\begin{cases}
+1 & x > 0 \\
+0 & x \leq 0
+\end{cases}$
+
+Inactive neurons ($z \leq 0$) do not contribute to gradient flow.
+
+---
+
+### Gradients for Hidden Layer Parameters
+
+Weight gradient:
+
+$\frac{\partial L}{\partial W_1} = x^T \delta_1$
+
+Bias gradient:
+
+$\frac{\partial L}{\partial b_1} = \delta_1$
+
+---
+
+## 7. Complete Backpropagation Pipeline
+
+Forward:
+
+$x \rightarrow z_1 \rightarrow a_1 \rightarrow z_2 \rightarrow \hat{y}$
+
+Backward:
+
+$\delta_2 \rightarrow \delta_1 \rightarrow \nabla W_2,\nabla W_1$
+
+---
+
+## 8. Optimization View (Loss Landscape)
+
+Training can be interpreted as minimizing a loss function over a high-dimensional parameter space:
+
+$\theta = \{W_1,W_2,b_1,b_2\}$
+
+The goal is:
+
+$\theta^\* = \arg\min_\theta L(\theta)$
+
+Gradient descent iteratively moves parameters toward a local minimum:
+
+$\theta \leftarrow \theta - \eta \nabla_\theta L$
+
+---
+
+This defines the full mathematical foundation of backpropagation and learning in a feedforward neural network.
+
+
+
 
 ## 6. Complete Pipeline
 
