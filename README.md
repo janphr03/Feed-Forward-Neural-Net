@@ -27,13 +27,9 @@ You can then:
 - torch
 - torchvision
 
+--- --- 
 
 # Feedforward Neural Network – Mathematische Herleitung (MNIST)
-
-Dieses Projekt implementiert ein einfaches vollständig verbundenes neuronales Netz
-zur Klassifikation handgeschriebener Ziffern aus dem **MNIST-Datensatz**.
-
----
 
 ## 1. Input- und Output-Dimensionen
 
