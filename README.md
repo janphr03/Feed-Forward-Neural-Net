@@ -196,8 +196,8 @@ $\delta \rightarrow \nabla W \rightarrow \text{Update}$
 
 --- --- ---
 
-<img width="672" height="952" alt="grafik" src="https://github.com/user-attachments/assets/d153e011-f373-412f-b7bc-81dfa8deff5d" />
 
 
+[Neuronales Netz-2-8.pdf](https://github.com/user-attachments/files/24985405/Neuronales.Netz-2-8.pdf)
 
 
