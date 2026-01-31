@@ -1,34 +1,7 @@
-# MNIST Neural Network (NumPy) - Load PyTorch Weights + Visualize
-
-This project contains a fully NumPy-based feedforward neural network for MNIST classification.
-Instead of training inside NumPy, the network **loads a trained PyTorch model (`mnist_model.pth`)** and copies the weights into NumPy matrices.  
-You can then:
-- run predictions on MNIST test images
-- visualize the weight matrices as heatmaps
-
-## Features
-- Forward pass: **ReLU** (hidden layers) + **Softmax** (output layer)
-- Loss: **Cross Entropy**
-- Optional Backprop skeleton (included in code)
-- Load weights from **PyTorch state_dict**
-- Visualize predictions + weight matrices
-
-
-## Requirements
-
-### Python version
-- Python **3.9+** recommended
-
-### Dependencies
-- numpy
-- matplotlib
-- seaborn
-- torch
-- torchvision
-
---- --- 
-
 # Feedforward Neural Network - Mathematische Herleitung (MNIST)
+
+Im Folgenden ist die mathematische Herleitung eines einfachen neuronalen Netzes für MNIST zusammengefasst.  
+Die Inhalte basieren auf meinen eigenen Notizen, die im Anhang ebenfalls abgelegt sind.
 
 ## 1. Input- und Output-Dimensionen
 
@@ -220,4 +193,11 @@ $x \rightarrow z_1 \rightarrow a_1 \rightarrow z_2 \rightarrow \hat y \rightarro
 Backward:
 
 $\delta \rightarrow \nabla W \rightarrow \text{Update}$
+
+--- --- ---
+
+<img width="672" height="952" alt="grafik" src="https://github.com/user-attachments/assets/d153e011-f373-412f-b7bc-81dfa8deff5d" />
+
+
+
 
